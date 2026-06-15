@@ -1,0 +1,20 @@
+# Secrets — NEVER commit
+**/.env
+.env
+*.pem
+*.key
+
+# Cloned external repo (Intuit QuickBooks Online MCP server).
+# Has its own git history, node_modules, and a local .env with OAuth secrets.
+quickbooks-online-mcp-server/
+
+# Node
+node_modules/
+
+# Local Claude settings (we DO version .claude/skills/, but not local prefs)
+.claude/settings.local.json
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log
