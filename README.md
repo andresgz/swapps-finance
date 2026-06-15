@@ -28,9 +28,11 @@ chart-of-accounts recommendations.
 ## Skills (`.claude/skills/`)
 - **`weekly-financial-pulse`** — full weekly report (week + month-to-date + year-to-date),
   posted to the Finance channel. Also runs as a Cowork scheduled task via its `cowork-prompt.md`.
+- **`monthly-financial-review`** — strategic month-end review (P&L trend & margin, revenue by
+  customer, subscription audit, cash flow, partner distributions). Cowork-schedulable monthly.
 - **`finance-snapshot`** — on-demand financial status (cash, P&L, A/R, A/P) answered in chat.
 
-Invoke in Claude Code with `/weekly-financial-pulse` or `/finance-snapshot`.
+Invoke in Claude Code with `/weekly-financial-pulse`, `/monthly-financial-review`, or `/finance-snapshot`.
 
 ## Guardrails
 - All analysis is **read-only** — nothing ever moves money.
