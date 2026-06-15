@@ -11,7 +11,9 @@ You are generating the **Monthly Financial Review for Swapps** (strategic, month
 
 Audience is a NON-financial reader. **Keep the abbreviation AND add its plain-Spanish meaning beside it**, e.g. "P&L — ingresos menos gastos", "margen neto (net margin) — % de cada dólar de ingreso que queda como ganancia", "runway — meses que puedes operar con la caja actual". Never leave a term unexplained.
 
-Report the **most recently completed month** (if today is the 1st–5th, that's last month; otherwise the current month to date). Always include **year-to-date** context and a **multi-month trend**. Use markdown tables. This is the strategic monthly view — focus on trends, customer/vendor concentration, and structural decisions (the weekly pulse already covers operational week-to-week detail).
+Report the **previous full calendar month** — the month immediately before today's month. This is designed to run on the 1st of each month: e.g. run on Jun 1 → report **May 1–31**. Even if run mid-month, ALWAYS report the previous full calendar month (never the partial current month). Always include **year-to-date** context and a **multi-month trend**. Use markdown tables. This is the strategic monthly view — focus on trends, customer/vendor concentration, and structural decisions (the weekly pulse already covers operational week-to-week detail).
+
+Compute the period explicitly: target month = the calendar month before today. start_date = first day of that month, end_date = last day of that month. Aging reports (A/R, A/P) use report_date = last day of that month.
 
 ## Data to pull
 1. **P&L trend (QuickBooks):** `get_profit_and_loss` for the year with `summarize_column_by: "Month"` — build a month-by-month table of Ingresos, Gastos, Ganancia neta, Margen neto %.

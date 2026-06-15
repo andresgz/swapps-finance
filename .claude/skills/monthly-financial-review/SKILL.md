@@ -21,6 +21,6 @@ style, and the ClickUp delivery target. **Follow that file as the single source 
   not the week-to-week operational detail that `weekly-financial-pulse` already covers.
 
 ## Behavior
-- Report the most recently **completed** month (plus year-to-date context and a multi-month trend).
+- Report the **previous full calendar month** — the month before the current one (designed to run on the 1st: e.g. run on June 1 → report May). Even if run mid-month, always the previous full month, never the partial current month. Include year-to-date context and a multi-month trend.
 - If the user asks to preview, show the report in chat and post only after approval.
 - If a connection is missing or a token expired, say so plainly and stop — do not invent figures.
