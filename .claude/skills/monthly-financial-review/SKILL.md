@@ -1,6 +1,6 @@
 ---
 name: monthly-financial-review
-description: Generate the Swapps monthly strategic financial review — P&L trend & margin over the last months, revenue by customer (concentration), expense breakdown & top vendors, SaaS/subscription audit (from Jeeves cards), cash flow & runway, partner distributions, and recommendations — then post it to the ClickUp "Finance" channel. Use when asked for the monthly financial review, "revisión financiera mensual", or a strategic/month-end finance report. The strategic counterpart to weekly-financial-pulse. Requires the quickbooks (read-only), jeeves, and clickup MCP connections.
+description: Generate the Swapps monthly strategic financial review — P&L trend & margin over the last months, revenue by customer (invoiced vs contracted MRR from swapps-app, concentration), expense breakdown & top vendors, SaaS/subscription audit (from Jeeves cards), cash flow & runway, partner distributions, and recommendations — then post it to the ClickUp "Finance" channel. Use when asked for the monthly financial review, "revisión financiera mensual", or a strategic/month-end finance report. The strategic counterpart to weekly-financial-pulse. Requires the quickbooks (read-only), jeeves, swapps-app (read-only), and clickup MCP connections.
 ---
 
 # Monthly Financial Review
@@ -11,8 +11,8 @@ style, and the ClickUp delivery target. **Follow that file as the single source 
 (the Cowork scheduled task uses the identical spec). Read it, then execute it.
 
 ## Non-negotiables
-- **Read-only.** Never create/update/delete in QuickBooks or Jeeves. The only write is one
-  ClickUp chat message.
+- **Read-only.** Never create/update/delete in QuickBooks, Jeeves or swapps-app. The only
+  write is one ClickUp chat message.
 - **Deliver** to the ClickUp "Finance" channel — `channel_id 5-90147717252-8` — via
   `clickup_send_chat_message`, `content_format: text/md`. Report the returned `message_id`.
 - **Audience is non-financial:** keep each abbreviation AND its plain-Spanish meaning beside

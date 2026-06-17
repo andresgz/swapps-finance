@@ -2,12 +2,12 @@
 
 Paste everything below the `---` into a **Claude Desktop → Cowork → Scheduled Task**, monthly
 (e.g. the 1st of each month, to review the month that just closed).
-Requires the `quickbooks` (read-only) and `jeeves` MCP servers, plus the `clickup` MCP.
+Requires the `quickbooks` (read-only), `jeeves` and `swapps-app` (read-only) MCP servers, plus the `clickup` MCP.
 Runs read-only: it only *reads* finance data and *writes one ClickUp message*. It never moves money.
 
 ---
 
-You are generating the **Monthly Financial Review for Swapps** (strategic, month-end) and posting it to ClickUp. Work read-only: do NOT create/update/delete anything in QuickBooks or Jeeves. The only write you make is one ClickUp chat message at the end.
+You are generating the **Monthly Financial Review for Swapps** (strategic, month-end) and posting it to ClickUp. Work read-only: do NOT create/update/delete anything in QuickBooks, Jeeves or swapps-app. The only write you make is one ClickUp chat message at the end.
 
 Audience is a NON-financial reader. **Keep the abbreviation AND add its plain-Spanish meaning beside it**, e.g. "P&L — ingresos menos gastos", "margen neto (net margin) — % de cada dólar de ingreso que queda como ganancia", "runway — meses que puedes operar con la caja actual". Never leave a term unexplained.
 
@@ -19,6 +19,7 @@ Compute the period explicitly: target month = the calendar month before today. s
 1. **P&L trend (QuickBooks):** `get_profit_and_loss` for the year with `summarize_column_by: "Month"` — build a month-by-month table of Ingresos, Gastos, Ganancia neta, Margen neto %.
 2. **Month + YTD P&L:** `get_profit_and_loss` for the target month and for year-to-date (Jan 1→today) — income, full expense breakdown by account, net income.
 3. **Revenue by customer:** `get_customer_sales` (target month and/or YTD) — show concentration (top clients, % of total).
+3b. **Contracted MRR by customer (swapps-app):** `list_contracts` (active) + `list_contract_services` → committed monthly recurring revenue (MRR — ingreso recurrente mensual comprometido) per client. Match clients by name to the QuickBooks customers so you can show **contracted vs invoiced** side by side.
 4. **Top vendors / expenses:** `get_vendor_expenses` — largest vendors for the month/YTD.
 5. **Cash flow:** `get_cash_flow` for the month; plus `get_balance_sheet` today for cash per account and partner-distribution/equity figures.
 6. **A/R & A/P:** `get_aged_receivables` and `get_aged_payables` — summary totals + anything >60 días.
@@ -27,9 +28,9 @@ Compute the period explicitly: target month = the calendar month before today. s
 ## Output format (markdown, Spanish, term + meaning, tables)
 Title: `📊 **Revisión Financiera Mensual Swapps — <mes YYYY>**`
 Sections:
-1. `🧭 **Resumen ejecutivo**` — headline numbers (ingresos, gastos, ganancia neta, margen neto %, caja total, runway) + top 🔴/🟡 flags.
+1. `🧭 **Resumen ejecutivo**` — headline numbers (ingresos, gastos, ganancia neta, margen neto %, caja total, runway, **MRR contratado** y su evolución vs meses previos) + top 🔴/🟡 flags.
 2. `📈 **Tendencia mensual (P&L)**` — TABLE: Mes | Ingresos | Gastos | Ganancia neta | Margen % (last ~6 months). One line on the trend.
-3. `👥 **Ingresos por cliente (concentración)**` — TABLE: Cliente | Monto | % del total. Flag if one client is a large share.
+3. `👥 **Ingresos por cliente (concentración)**` — TABLE: Cliente | Facturado (QB) | MRR contratado (swapps-app) | Brecha | % del total. Flag if one client is a large share, and call out clients with **contracted MRR not being invoiced** (under-billing) or invoiced-without-contract (stale contract data).
 4. `💸 **Gastos por categoría + principales proveedores**` — TABLE of expense accounts; TABLE of top vendors.
 5. `🧾 **Auditoría de suscripciones / software**` — total mensual de software; TABLE of recurring SaaS; call out duplicate/unused cards and estimated savings.
 6. `💰 **Flujo de caja y runway**` — entradas vs salidas del mes, saldo por cuenta, distribución a socios (partner distributions), runway.
